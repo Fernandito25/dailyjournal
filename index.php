@@ -69,6 +69,9 @@ include "koneksi.php";
             <li class="nav-item">
               <a class="nav-link" href="#gallery">Gallery</a>
             </li>
+              <li class="nav-item">
+              <a class="nav-link" href="login.php">Login</a>
+            </li>
           </ul>
 
           <div class="dropdown ms-4" id="themeDropdown">

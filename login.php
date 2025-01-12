@@ -9,13 +9,13 @@ include "koneksi.php";
 //check jika sudah ada user yang login arahkan ke halaman admin
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
 
-  $stmt = $conn->prepare("SELECT username, password FROM user WHERE username=?");
-  $stmt->bind_param("s", $username);
+  $stmt = $conn->prepare("SELECT username FROM user WHERE username=? AND password=?");
+  $stmt->bind_param("ss", $username,$password);
   $stmt->execute();
   $hasil = $stmt->get_result();
-  $row = $hasil->fetch_assoc();
+  $row = $hasil->fetch_array(MYSQLI_ASSOC);
 
   if (!empty($row) && $row['username'] == 'admin') {
       $_SESSION['username'] = $row['username'];
